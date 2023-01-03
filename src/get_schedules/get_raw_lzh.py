@@ -1,6 +1,6 @@
 # 開始日と終了日を指定(YYYY-MM-DD)
-START_DATE = "2020-06-01"
-END_DATE = "2020-06-07"
+START_DATE = "2005-01-01"
+END_DATE = "2020-12-31"
 
 # ファイルの保存先を指定　※コラボでGoogleドライブをマウントした状態を想定
 SAVE_DIR = "./input/schedule/timetable_lzh/"

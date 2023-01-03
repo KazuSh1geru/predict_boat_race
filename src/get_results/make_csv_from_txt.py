@@ -1,8 +1,8 @@
 # テキストファイルが保存されている場所を指定
-TEXT_FILE_DIR = "./input/results_txt/"
+TEXT_FILE_DIR = "./input/results/txt/"
 
 # CSVファイルを保存する場所を指定
-CSV_FILE_DIR = "./input/results_csv_racecode/"
+CSV_FILE_DIR = "./input/results/csv_racecode/"
 
 # CSVファイルの名前を指定　※YYYYMMDDには対象期間を入力
 CSV_FILE_NAME = "results_YYYYMMDD-YYYYMMDD.csv"
