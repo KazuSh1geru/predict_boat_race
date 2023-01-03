@@ -1,7 +1,7 @@
 from requests import get
 from bs4 import BeautifulSoup
 
-target_url = "https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=1&jcd=21&hd=20210206"
+target_url = "https://www.boatrace.jp/owpc/pc/race/odds3t?rno=1&jcd=21&hd=20210206"
 
 if __name__ == "__main__":
     html = get(target_url)
@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # css selectorで指定したHTMLタグの中身を取得
     odds_tables = soup.find_all("table")
     # 2連単オッズ
-    odds_table = odds_tables[2]
+    odds_table = odds_tables[1]
     print(odds_table)
     # print(odds_table[1])
     
