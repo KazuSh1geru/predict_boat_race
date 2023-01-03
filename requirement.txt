@@ -1,11 +1,9 @@
 selenium
 beautifulsoup4
-lxml
-pytz
 requests
 
 pandas
 numpy
 
-# 追記
+# lzh解凍
 lhafile
