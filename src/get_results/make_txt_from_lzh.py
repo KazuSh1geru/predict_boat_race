@@ -1,8 +1,8 @@
 # ダウンロードしたLZHファイルが保存されている場所を指定
-LZH_FILE_DIR = "drive/My Drive/results_lzh/"
+LZH_FILE_DIR = "./input/raw_lzh/"
 
 # 解凍したファイルを保存する場所を指定
-TXT_FILE_DIR = "drive/My Drive/results_txt/"
+TXT_FILE_DIR = "./input/results_txt/"
 
 # 正規表現をサポートするモジュール re をインポート
 import re

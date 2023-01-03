@@ -1,9 +1,9 @@
 # 開始日と終了日を指定(YYYY-MM-DD)
-START_DATE = "2020-09-01"
-END_DATE = "2020-09-07"
+START_DATE = "2005-01-01"
+END_DATE = "2020-12-31"
 
 # ファイルの保存先を指定　※コラボでGoogleドライブをマウントした状態を想定
-SAVE_DIR = "input/raw_lzh/"
+SAVE_DIR = "./input/raw_lzh/"
 
 # リクエスト間隔を指定(秒)　※サーバに負荷をかけないよう3秒以上を推奨
 INTERVAL = 3
