@@ -43,7 +43,8 @@ def get_data(text_file):
 
     # テキストファイルから中身を順に取り出す
     for line in text_file:
-
+        
+        exit_loop = False
         # キーワード「競争成績」を見つけたら(rは正規表現でraw文字列を指定するおまじない)
         if re.search(r"競走成績", line):
             # 1行スキップ
@@ -61,6 +62,9 @@ def get_data(text_file):
             day = line[3:7].replace(' ', '')
             date = line[17:27].replace(' ', '0')
             stadium = line[62:65].replace('　', '')
+            # たまにうまくいかない
+            if stadium == "場\n":
+                stadium = line[-8:-5].replace('　', '')
 
         # レース回の「R」と距離の「H」を同じ行に見つけたら -> これ以降に競走成績の詳細が記載
         if re.search(r"R", line) and re.search(r"H", line):
@@ -107,7 +111,7 @@ def get_data(text_file):
 
             # 空行まで処理を繰り返す = レース結果を取得
             while line != "\n":
-
+                    
                 # 単勝の結果を取得
                 if re.search(r"単勝", line):
 
@@ -167,14 +171,20 @@ def get_data(text_file):
                 if re.search(r"３連複", line):
                     result_trio = line[14:19] + "," + line[21:28].strip() \
                                   + "," + line[35:38].strip()
+                # 不成立の場合は抜かす
+                if re.search(r"不成立", line):
+                    exit_loop = True
+                    break
 
                 # 次の行を読み込む
                 line = text_file.readline()
-
+            # 不成立の場合はfor loopから抜ける
+            if exit_loop:
+                continue
             # レースコードを生成
             dict_stadium = {'桐生': 'KRY', '戸田': 'TDA', '江戸川': 'EDG', '平和島': 'HWJ',
                             '多摩川': 'TMG', '浜名湖': 'HMN', '蒲郡': 'GMG', '常滑': 'TKN',
-                            '津': 'TSU', '三国': 'MKN', '琵琶湖': 'BWK', '住之江': 'SME',
+                            '津': 'TSU', '三国': 'MKN', '琵琶湖': 'BWK','びわこ': 'BWK', '住之江': 'SME',
                             '尼崎': 'AMG', '鳴門': 'NRT', '丸亀': 'MRG', '児島': 'KJM',
                             '宮島': 'MYJ', '徳山': 'TKY', '下関': 'SMS', '若松': 'WKM',
                             '芦屋': 'ASY', '福岡': 'FKO', '唐津': 'KRT', '大村': 'OMR'

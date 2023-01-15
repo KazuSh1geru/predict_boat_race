@@ -25,7 +25,7 @@ def get_data(text_file):
 
     # テキストファイルから中身を順に取り出す
     for contents in text_file:
-
+        exit_loop = False
         # キーワード「競争成績」を見つけたら(rは正規表現でraw文字列を指定するおまじない)
         if re.search(r"競走成績", contents):
             # 1行スキップ
@@ -43,6 +43,10 @@ def get_data(text_file):
             day = line[3:7].replace(' ', '')
             date = line[17:27].replace(' ', '0')
             stadium = line[62:65].replace('　', '')
+            # たまにうまくいかない
+            if stadium == "場\n":
+                stadium = line[-8:-5].replace('　', '')
+
 
         # キーワード「払戻金」を見つけたら
         if re.search(r"払戻金", contents):
@@ -60,7 +64,7 @@ def get_data(text_file):
                           + line[64:67] + "," + line[68:75].strip()
 
                 # レースコードを生成
-                dict_stadium = {'桐生': 'KRY', '戸田': 'TDA', '江戸川': 'EDG', '平和島': 'HWJ',
+                dict_stadium = {'桐生': 'KRY', '戸田': 'TDA', '江戸川': 'EDG', '平和島': 'HWJ','びわこ': 'BWK',
                                 '多摩川': 'TMG', '浜名湖': 'HMN', '蒲郡': 'GMG', '常滑': 'TKN',
                                 '津': 'TSU', '三国': 'MKN', '琵琶湖': 'BWK', '住之江': 'SME',
                                 '尼崎': 'AMG', '鳴門': 'NRT', '丸亀': 'MRG', '児島': 'KJM',
@@ -102,7 +106,6 @@ for text_file_name in text_file_list:
     if re.search(".TXT", text_file_name):
         # テキストファイルを開く
         text_file = open(TEXT_FILE_DIR + text_file_name, "r", encoding="shift_jis")
-
         # 関数 get_data にファイル(オブジェクト)を渡す
         get_data(text_file)
 

@@ -45,6 +45,10 @@ import os
 # CSVファイルの読み書きを行う csv モジュールをインポート
 import csv
 
+# datetimeを扱う
+from dateutil import parser
+from datetime import datetime
+
 
 # Webサイトからオッズデータを抽出する関数 get_odds を定義
 def get_odds(target_url):
@@ -82,7 +86,6 @@ def get_odds(target_url):
             for odds in csv_row:
                 csv_text += "," + odds
 
-
     # オッズデータがなかった場合
     except:
         csv_text = "," + "No data"
@@ -114,6 +117,12 @@ with open(RACECODE_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
     for row in reader:
         # 最初の列(レースコード)を格納
         race_code = row[0]
+        # 2017年以降しかオッズデータを確認できなかった
+        race_year = parser.parse(race_code[0:4])
+        target_year = datetime.strptime("20170101", "%Y%m%d")
+        # ターゲットでなかったらスキップ
+        if race_year < target_year:
+            continue
 
         # 3レターコードと場コードの対応表
         dict_stadium = {'KRY': '01', 'TDA': '02', 'EDG': '03', 'HWJ': '04',
