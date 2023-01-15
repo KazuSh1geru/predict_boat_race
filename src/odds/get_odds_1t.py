@@ -1,3 +1,12 @@
+#%%
+from os.path import dirname, abspath
+import sys
+
+# job_exex.pyから2つ上のディレクトリの絶対パスを取得し、sys.pathに登録する
+parent_dir = dirname(dirname(abspath(__file__))) # 追加
+if parent_dir not in sys.path: # 追加
+    sys.path.append(parent_dir) # 追加
+    
 # レースコードが格納されているCSVファイルを指定　※最初の列に格納されていること
 from constants import CLEAN_DATA_FILE_PATH
 
@@ -19,6 +28,7 @@ BET_TYPE = "tf"
 
 # リクエスト間隔を指定(秒)　※サーバに負荷をかけないよう3秒以上を推奨
 INTERVAL = 3
+
 
 # HTMLからデータを取り出すモジュール BeautifulSoup をインポート
 from bs4 import BeautifulSoup
