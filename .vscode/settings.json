@@ -1,0 +1,7 @@
+{
+    // ターミナルから使用したいpython環境を指定する -> pyenv環境に指定
+    "files.eol": "\n",
+    "terminal.integrated.env.windows": {
+        "PATH": "~/.pyenv/versions/3.10.8/envs/return_rate/bin/python"
+    }
+}

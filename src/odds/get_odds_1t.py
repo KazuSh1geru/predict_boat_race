@@ -100,11 +100,15 @@ with open(RACECODE_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
     header = next(reader)
 
     # レースコードを取得するCSVファイルを1行ずつ読み込む
+    skip_flg = True
     for row in reader:
         # 最初の列(レースコード)を格納
         race_code = row[0]
-        # 最初の列(レースコード)を格納
-        race_code = row[0]
+        if skip_flg:
+            if race_code != "20171012TDA12":
+                continue
+            else:
+                skip_flg = False
         # 2017年以降しかオッズデータを確認できなかった
         race_year = parser.parse(race_code[0:4])
         target_year = datetime.strptime("20170101", "%Y%m%d")

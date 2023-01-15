@@ -47,7 +47,6 @@ def get_data(text_file):
             if stadium == "場\n":
                 stadium = line[-8:-5].replace('　', '')
 
-
         # キーワード「払戻金」を見つけたら
         if re.search(r"払戻金", contents):
 

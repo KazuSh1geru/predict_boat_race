@@ -1,6 +1,6 @@
 # レースコードが格納されているCSVファイルを指定　※最初の列に格納されていること
 RACECODE_FILE_PATH = \
-    "./input/results/csv_racecode/results_YYYYMMDD-YYYYMMDD.csv"
+    "./input/results/csv_racecode/clean_results_YYYYMMDD-YYYYMMDD.csv"
 
 # オッズデータを格納するCSVファイルの保存先を指定
 ODDS_FILE_DIR = "./input/results/odds_csv/"
