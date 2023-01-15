@@ -1,6 +1,5 @@
 # レースコードが格納されているCSVファイルを指定　※最初の列に格納されていること
-RACECODE_FILE_PATH = \
-    "./input/results/csv_racecode/results_YYYYMMDD-YYYYMMDD.csv"
+from constants import CLEAN_DATA_FILE_PATH
 
 # オッズデータを格納するCSVファイルの保存先を指定
 ODDS_FILE_DIR = "./input/results/odds_csv/"
@@ -108,7 +107,7 @@ with open(ODDS_FILE_DIR + ODDS_FILE_NAME, "w", encoding="shift_jis") as csv_file
     # csv_file.close()
 
 # レースコードを取得してURLを生成しオッズデータを取得
-with open(RACECODE_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
+with open(CLEAN_DATA_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
     reader = csv.reader(race_code_file)
 
     # ヘッダー行をスキップ

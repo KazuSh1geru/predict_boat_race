@@ -1,6 +1,5 @@
 # レースコードが格納されているCSVファイルを指定　※最初の列に格納されていること
-RACECODE_FILE_PATH = \
-    "./input/results/csv_racecode/results_YYYYMMDD-YYYYMMDD.csv"
+from constants import CLEAN_DATA_FILE_PATH
 
 # オッズデータを格納するCSVファイルの保存先を指定
 ODDS_FILE_DIR = "./input/results/odds_csv/"
@@ -93,22 +92,16 @@ with open(ODDS_FILE_DIR + ODDS_FILE_NAME, "w", encoding="shift_jis") as csv_file
     # csv_file.close()
 
 # レースコードを取得してURLを生成しオッズデータを取得
-with open(RACECODE_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
+with open(CLEAN_DATA_FILE_PATH, "r", encoding="shift_jis") as race_code_file:
     reader = csv.reader(race_code_file)
 
     # ヘッダー行をスキップ
     header = next(reader)
 
     # レースコードを取得するCSVファイルを1行ずつ読み込む
-    skip_flg = True
     for row in reader:
         # 最初の列(レースコード)を格納
         race_code = row[0]
-        if skip_flg:
-            if race_code != "20171012TDA12":
-                continue
-            else:
-                skip_flg = False
         # 2017年以降しかオッズデータを確認できなかった
         race_year = parser.parse(race_code[0:4])
         target_year = datetime.strptime("20170101", "%Y%m%d")
